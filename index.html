@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fingerprint Practice</title>
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #333;
+    }
+    .wrap .scan_wrap {
+      padding-bottom: 40px;
+    }
+    .wrap .scan_wrap .scan_image {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      background: url(fingerprint-down.svg) no-repeat;
+      background-size: 200px;
+    }
+    .wrap .scan_wrap .scan_image:after {
+     content: '';
+     width: inherit;
+     height: 8px;
+     background-color:  #34ace0;
+     position: absolute;
+     border-radius: 30px;
+     top: 0;
+     animation: Scanning_bar 3s infinite;
+    }
+    .wrap .scan_wrap .scan_image:before {
+      content: '';
+      position: absolute;
+      width: inherit;
+      height: 0;
+      top: 0;
+      background: url(fingerprint-up.svg) no-repeat center top;
+      background-size: 200px;
+      animation: Scanning 3s infinite;
+    }
+    .wrap .scan_wrap span {
+      display: block;
+      text-align: center;
+      font-size: 2em;
+      color: #fff;
+    }
+    @keyframes Scanning_bar {
+      0%,100% {
+        top:0
+      }
+      50% {
+        top:100%
+      }
+    }
+    @keyframes Scanning {
+      0%,100% {
+        height: 0;
+      }
+      50% {
+        height: 100%;
+      }
+    }
+    .btn_X {
+      position: fixed;
+      top: 20px;
+      right: 4%;
+      border-radius: 50px;
+      border: 1px solid #ffffff73;
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+    }
+    .btn_X:after,
+    .btn_X:before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background-color: #ffffff73;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    .btn_X:after {
+      transform: translate(-50%,-50%) rotate(45deg);
+    }
+    .btn_X:before {
+      transform: translate(-50%,-50%) rotate(-45deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="scan_wrap">
+      <div class="scan_image"></div>
+      <span>Scanning...</span>
+    </div>
+  </div>
+  <div class="btn_X" onclick="window.close()"></div>
+</body>
+</html>
